@@ -30,21 +30,4 @@ class Queue {
   }
 }
 
-
-$q = new Queue();
-$q -> enqueue("Hello");
-$q -> enqueue("World");
-echo "Queued:";
-$q -> printData();
-echo "\n";
-
-echo "Dequeued: ";
-echo $q -> dequeue();
-echo "\n";
-
-echo "Queued:";
-$q -> printData();
-echo "\n";
-
-
 ?>

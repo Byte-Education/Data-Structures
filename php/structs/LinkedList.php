@@ -111,18 +111,6 @@ class LinkedList {
 
 }
 
-$ll = new LinkedList();
-$ll -> add("Hello");
-$ll -> add("World");
-$ll -> add("Edward");
-$ll -> showValues();
-echo "\n";
-$ll -> remove(2);
-$ll -> showValues();
-
-
-
-
 
 
 ?>
