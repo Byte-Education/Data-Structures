@@ -8,6 +8,10 @@ class Node {
     $this->next = null;
   }
 
+  public function __toString(){
+    return $this -> data;
+  }
+
   public function getNext(){
     return $this->next;
   }
@@ -34,7 +38,7 @@ class LinkedList {
       return "";
     } 
     while($temp != null){
-      $str .= $temp -> getData();
+      $str .= $temp;
       $str .= " ";
       $temp = $temp -> getNext();
     }
