@@ -116,16 +116,7 @@ class LinkedList {
       }
     }
   }
-  
 
-  public function showValues(){
-    $temp = $this->head;
-    while ($temp != null) {
-      print $temp -> getData();
-      print " ";
-      $temp = $temp -> getNext();
-    }
-  }
 
 }
 

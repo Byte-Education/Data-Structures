@@ -16,7 +16,7 @@ class TestLinkedList {
     $ll -> add("Test");
 
     echo "Stored Values: ";
-    $ll -> showValues();
+    echo $ll;
     echo "\n";
   }
 }
