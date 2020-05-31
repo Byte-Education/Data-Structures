@@ -70,12 +70,23 @@ class TestPriorityQueue{
     $p_queue -> insert("Edward", 100);
     $p_queue -> insert($set);
     $p_queue -> insert($ll, 30);
+
+    $p_queue -> insert("top", 50);
+    
+    
     echo "Data:\n";
     $p_queue -> printData();
     echo "\n";
     echo "Deleted: \n";
     echo $p_queue -> delete(true);
     echo "\n\n";
+
+    $p_queue -> insertAtTop("Top Value");
+    $p_queue -> insertAtBottom("Bottom Value");
+    $p_queue -> insertAtBottom("True bottom");
+
+    $p_queue -> insert("Hello again");
+    
     echo "Data:\n";
     $p_queue -> printData();
   }

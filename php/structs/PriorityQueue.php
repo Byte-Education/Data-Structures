@@ -80,7 +80,23 @@ class QueueNode
 
 /**
  * The Data structure representing a priority queue
+ *
+ * Capabilities:
  * 
+ * - Insert at given index
+ * 
+ * - Insert at counting incrementing index
+ * 
+ * - Insert at top
+ * 
+ * - Insert at bottom
+ * 
+ * - Delete from top
+ * 
+ * - Peek the top
+ * 
+ * - Peek the bottom
+ *
  * @author Edward Rees
  * @version 1.0
  */
@@ -89,12 +105,20 @@ class PriorityQueue
     /** @var \QueueNode[] $queue The queue itself */
     private $queue;
 
-    /** @var int $bottom the bottom value to be incremented */
+    /** @var int[] $valuesUsed values used */
+    private $valuesUsed;
+
+    /** @var int $index the index value to be incremented */
+    private $index;
+
+    /** @var int $bottom the bottom value to be placed at bottom */
     private $bottom;
     
     /** @var bool $maxQueue a boolean value checking if the priority is a max priority queue or min queue */
     private $maxQueue;
 
+    /** @var int $top the top value to emphasize top value */
+    private $top;
     /**
      * construct a new priority queue, sets properties to default values
      *
@@ -103,8 +127,11 @@ class PriorityQueue
     public function __construct(bool $maxQueue = true)
     {
         $this -> queue = [];
-        $this -> bottom = 0;
+        $this -> valuesUsed = [];
+        $this -> index = 0;
         $this -> maxQueue = $maxQueue;
+        $this -> top = 0;
+        $this -> bottom = 0;
     }
 
     /**
@@ -127,27 +154,55 @@ class PriorityQueue
      * @param $value specific value to be added
      * @param int $priority priority of given value / node, default value will increment from 0 onward.
      */
-    public function insert($value, int $priority = -1)
+    public function insert($value, int $priority = null)
     {
-        if ($priority == -1) {
-            $priority = $this -> bottom++;
+        if ($priority == null) {
+            $priority = $this -> index++;
         }
         $this -> queue[] = new QueueNode($priority, $value);
+        $this -> valuesUsed[] = $priority;
         $this -> sort();
     }
 
+    /**
+     * Insert at the top of the priority queue
+     * @param $value value to be added at top
+     */
+    public function insertAtTop($value)
+    {
+        $this -> top = $this -> peekTop() -> getPriority();
+        $this -> insert($value, ++$this -> top);
+    }
+
+    /**
+     * Insert at the bottom of the priority queue
+     * @param $value value to be added at bottom
+     */
+    public function insertAtBottom($value)
+    {
+        $this -> bottom = $this -> peekBottom() -> getPriority();
+        $this -> insert($value, --$this -> bottom);
+    }
     /**
      * Get the most max or min value in the queue, based off of whether it is a max or min priority queue.
      *
      * @return \QueueNode node with the max or min value
      */
-    public function peek()
+    public function peekTop()
     {
         if ($this -> maxQueue) {
             return $this -> queue[$this -> findMax()];
         } else {
-            return $this -> queue[$this -> findMinx()];
+            return $this -> queue[$this -> findMin()];
         }
+    }
+
+    public function peekBottom()
+    {
+        if ($this -> maxQueue) {
+            return $this -> queue[$this -> findMin()];
+        }
+        return $this -> queue[$this -> findMax()];
     }
     
     /**
@@ -162,6 +217,7 @@ class PriorityQueue
             $item = $this -> queue[$max];
             unset($this -> queue[$max]);
             $this -> queue = array_values($this -> queue);
+            $this -> top = $this -> findMax();
             return $item;
         } catch (Exception $exception) {
             echo "Error";
