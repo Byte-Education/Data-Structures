@@ -93,6 +93,20 @@ class TestPriorityQueue
         $p_queue -> insert("Hello again");
     
         echo $p_queue;
+        echo "\n\n";
+        $p_queue -> resetCount();
+
+        $p_queue -> insertAtTop("Top Value 2");
+        $p_queue -> insert("Second top");
+        $p_queue -> insertAtBottom("New Bottom");
+        echo $p_queue;
+
+        $p_queue -> resetCount();
+
+
+        echo "\n\n";
+        echo $p_queue;
+
     }
 }
 

@@ -82,20 +82,22 @@ class QueueNode
  * The Data structure representing a priority queue
  *
  * Capabilities:
- * 
+ *
  * - Insert at given index
- * 
+ *
  * - Insert at counting incrementing index
- * 
+ *
  * - Insert at top
- * 
+ *
  * - Insert at bottom
- * 
+ *
  * - Delete from top
- * 
+ *
  * - Peek the top
- * 
+ *
  * - Peek the bottom
+ * 
+ * - Reset the count to a normal incremental count
  *
  * @author Edward Rees
  * @version 1.0
@@ -119,6 +121,10 @@ class PriorityQueue
 
     /** @var int $top the top value to emphasize top value */
     private $top;
+
+    /** @var int TOP_STEP Skip value for top */
+    private const TOP_STEP = 5;
+
     /**
      * construct a new priority queue, sets properties to default values
      *
@@ -137,10 +143,11 @@ class PriorityQueue
     /**
      * Return the string representation of the priority queue
      */
-    public function __toString(){
-      $str = "Priority Queue Data:\n";
-      $str .= join("\n", $this -> queue);
-      return $str;
+    public function __toString()
+    {
+        $str = "Priority Queue Data:\n";
+        $str .= join("\n", $this -> queue);
+        return $str;
     }
 
     /**
@@ -175,12 +182,23 @@ class PriorityQueue
 
     /**
      * Insert at the top of the priority queue
+     *
+     * Updates index value to the previous top index
+     *
      * @param $value value to be added at top
      */
     public function insertAtTop($value)
     {
+        // Set the top index to the top priority found
         $this -> top = $this -> peekTop() -> getPriority();
-        $this -> insert($value, ++$this -> top);
+        // Keep track of previous top priority
+        $previousTop = $this -> top;
+        // Update and shift top priority index by a factor determined by constant TOP_STEP
+        $this -> top += self::TOP_STEP;
+        // Insert at new top priority
+        $this -> insert($value, $this -> top);
+        // Update current index priority to previous top priority + 1
+        $this -> index = $previousTop + 1;
     }
 
     /**
@@ -206,6 +224,10 @@ class PriorityQueue
         }
     }
 
+    /**
+     * Peek the bottom value in the priority queue
+     * @return \QueueNode node with the min or max value
+     */
     public function peekBottom()
     {
         if ($this -> maxQueue) {
@@ -317,5 +339,23 @@ class PriorityQueue
             }
         }
         return $min;
+    }
+
+    /**
+     * Reset the count to a basic incrementing system
+     *
+     * Called when top hits some limit
+     *
+     * Resets Top, Bottom, and Index
+     */
+    public function resetCount()
+    {
+      $this -> bottom = 0;
+      $this -> index = 0;
+      for($i = $this -> size() - 1; $i >= 0; $i--){
+        $prevValue = $this -> queue[$i] -> getValue();
+        $this -> queue[$i] = new QueueNode($this -> index++, $prevValue);
+      }
+      $this -> top = $this -> index;
     }
 }
