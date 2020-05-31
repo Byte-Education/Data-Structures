@@ -7,6 +7,11 @@ class Queue {
     $this -> data = [];
   }
 
+  public function __toString(){
+    $str = "Queue Data:\n";
+    $str .= join(" ", $this -> data);
+    return $str;
+  }
   public function printData(){
     for ($i = 0; $i < sizeof($this -> data); $i++) {
       echo $this -> data[$i];
