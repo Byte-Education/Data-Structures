@@ -1,16 +1,28 @@
 <?php
 
+ 
 /**
  * Node used for the priority queue
+ *
+ * @author Edward Rees
+ * @version 1.0
  */
 class QueueNode
 {
     /**
      * Priority for the individual node
+     *
+     * Must be an integer
+     *
+     * @var int $priority priority for the individual node, must be an integer
      */
     private $priority;
     /**
      * Value of the individual node
+     *
+     * Can be any type
+     *
+     * @var string|int|boolean|object $value value of the individual node, can be any type
      */
     private $value;
     /**
@@ -29,7 +41,7 @@ class QueueNode
 
     /**
      * Returns a string representation of a queue node
-     * @return string Priority: priorityValue, Value: nodeValue
+     * @return string Priority: {priority}, Value: {value}
      */
     public function __toString()
     {
@@ -68,11 +80,15 @@ class QueueNode
 
 /**
  * The Data structure representing a priority queue
+ * 
+ * @author Edward Rees
+ * @version 1.0
  */
 class PriorityQueue
 {
     /** @var \QueueNode[] $queue The queue itself */
     private $queue;
+
     /** @var int $bottom the bottom value to be incremented */
     private $bottom;
     
