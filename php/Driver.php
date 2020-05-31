@@ -63,6 +63,7 @@ class TestPriorityQueue
     {
         $set = new Set();
         $set -> add("Hello");
+        $set -> add("Hello");
         $set -> add("World");
   
         $ll = new LinkedList();

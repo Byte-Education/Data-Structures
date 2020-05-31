@@ -130,7 +130,7 @@ class PriorityQueue
      *
      * @param bool $maxQueue optional value whether a priority queue is a max queue or not
      */
-    public function __construct(bool $maxQueue = true) 
+    public function __construct(bool $maxQueue = true)
     {
         $this -> queue = [];
         $this -> valuesUsed = [];
@@ -354,8 +354,10 @@ class PriorityQueue
         $this -> index = 0;
         for ($i = $this -> size() - 1; $i >= 0; $i--) {
             $prevValue = $this -> queue[$i] -> getValue();
-            $this -> queue[$i] = new QueueNode($this -> index++, $prevValue);
+            $this -> valuesUsed[$i] = $this -> index;
+            $this -> queue[$i] -> updatePriority($this -> index++);
         }
+
         $this -> top = $this -> index;
     }
 }
