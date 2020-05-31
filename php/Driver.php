@@ -5,6 +5,21 @@ include "structs/LinkedList.php";
 include "structs/Queue.php";
 include "structs/PriorityQueue.php";
 
+class TestLinkedList {
+  public static function main(){
+    $ll = new LinkedList();
+    $ll -> add("Hello");
+    $ll -> add("World");
+    $ll -> add("This");
+    $ll -> add("Is");
+    $ll -> add("A");
+    $ll -> add("Test");
+
+    echo "Stored Values: ";
+    $ll -> showValues();
+    echo "\n";
+  }
+}
 
 class TestQueue{
   public static function main(){
@@ -43,12 +58,18 @@ class TestPriorityQueue{
     $set -> add("Hello");
     $set -> add("World");
   
+    $ll = new LinkedList();
+    $ll -> add("Hello");
+    $ll -> add("World");
+    $ll -> add("Test");
+
     $p_queue = new PriorityQueue();
-    $p_queue -> insert("hello");
-    $p_queue -> insert("john", 20);
-    $p_queue -> insert("world");
-    $p_queue -> insert("edward", 100);
+    $p_queue -> insert("Hello");
+    $p_queue -> insert("John", 20);
+    $p_queue -> insert("World");
+    $p_queue -> insert("Edward", 100);
     $p_queue -> insert($set);
+    $p_queue -> insert($ll, 30);
     echo "Data:\n";
     $p_queue -> printData();
     echo "\n";
@@ -57,7 +78,6 @@ class TestPriorityQueue{
     echo "\n\n";
     echo "Data:\n";
     $p_queue -> printData();
-    // echo "\n";
   }
 
 }

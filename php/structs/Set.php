@@ -10,7 +10,8 @@ class Set
     }
 
     public function __toString(){
-      $str = join(" ", $this -> data);
+      $str = "Set: ";
+      $str .= join(" ", $this -> data);
       return $str;
     }
 

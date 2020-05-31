@@ -27,6 +27,20 @@ class LinkedList {
     $this->head = null;
   }
 
+  public function __toString(){
+    $str = "LinkedList: ";
+    $temp = $this -> head;
+    if($temp == null){
+      return "";
+    } 
+    while($temp != null){
+      $str .= $temp -> getData();
+      $str .= " ";
+      $temp = $temp -> getNext();
+    }
+    return $str;
+  }
+
   public function size(){
     $count = 0;
     while($temp != null){
