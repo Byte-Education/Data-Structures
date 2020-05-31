@@ -9,6 +9,11 @@ class Set
         $this -> data = [];
     }
 
+    public function __toString(){
+      $str = join(" ", $this -> data);
+      return $str;
+    }
+
     public function contains(string $item)
     {
         for ($i = 0; $i < sizeof($this -> data); $i++) {
