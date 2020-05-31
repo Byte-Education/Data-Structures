@@ -82,9 +82,7 @@ class TestPriorityQueue
     
         echo $p_queue . "\n\n";
 
-        echo "Deleted: \n";
-        echo $p_queue -> delete(true);
-        echo "\n\n";
+        echo "Deleted: \n" . $p_queue -> delete() . "\n\n";
 
         $p_queue -> insertAtTop("Top Value");
         $p_queue -> insertAtBottom("Bottom Value");
@@ -103,10 +101,12 @@ class TestPriorityQueue
 
         $p_queue -> resetCount();
 
+        echo "\n\nDeleted: " . $p_queue -> delete();
 
         echo "\n\n";
         echo $p_queue;
 
+        
     }
 }
 

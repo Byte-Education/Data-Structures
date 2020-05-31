@@ -43,7 +43,7 @@ class QueueNode
      * Returns a string representation of a queue node
      * @return string Priority: {priority}, Value: {value}
      */
-    public function __toString()
+    public function __toString() : string
     {
         return sprintf("Priority: %d, Value: %s", $this -> priority, $this -> value);
     }
@@ -63,7 +63,7 @@ class QueueNode
      *
      * @return $priority the priority of the node
      */
-    public function getPriority()
+    public function getPriority() : int
     {
         return $this -> priority;
     }
@@ -96,7 +96,7 @@ class QueueNode
  * - Peek the top
  *
  * - Peek the bottom
- * 
+ *
  * - Reset the count to a normal incremental count
  *
  * @author Edward Rees
@@ -130,7 +130,7 @@ class PriorityQueue
      *
      * @param bool $maxQueue optional value whether a priority queue is a max queue or not
      */
-    public function __construct(bool $maxQueue = true)
+    public function __construct(bool $maxQueue = true) 
     {
         $this -> queue = [];
         $this -> valuesUsed = [];
@@ -143,7 +143,7 @@ class PriorityQueue
     /**
      * Return the string representation of the priority queue
      */
-    public function __toString()
+    public function __toString() : string
     {
         $str = "Priority Queue Data:\n";
         $str .= join("\n", $this -> queue);
@@ -153,7 +153,7 @@ class PriorityQueue
     /**
      * Sort the data based on the priorities
      */
-    private function sort()
+    private function sort() : void
     {
         if ($this -> maxQueue) {
             rsort($this -> queue);
@@ -170,7 +170,7 @@ class PriorityQueue
      * @param $value specific value to be added
      * @param int $priority priority of given value / node, default value will increment from 0 onward.
      */
-    public function insert($value, int $priority = null)
+    public function insert($value, int $priority = null) : void
     {
         if ($priority == null) {
             $priority = $this -> index++;
@@ -187,7 +187,7 @@ class PriorityQueue
      *
      * @param $value value to be added at top
      */
-    public function insertAtTop($value)
+    public function insertAtTop($value) : void
     {
         // Set the top index to the top priority found
         $this -> top = $this -> peekTop() -> getPriority();
@@ -205,7 +205,7 @@ class PriorityQueue
      * Insert at the bottom of the priority queue
      * @param $value value to be added at bottom
      */
-    public function insertAtBottom($value)
+    public function insertAtBottom($value) : void
     {
         $this -> bottom = $this -> peekBottom() -> getPriority();
         $this -> insert($value, --$this -> bottom);
@@ -215,7 +215,7 @@ class PriorityQueue
      *
      * @return \QueueNode node with the max or min value
      */
-    public function peekTop()
+    public function peekTop() : QueueNode
     {
         if ($this -> maxQueue) {
             return $this -> queue[$this -> findMax()];
@@ -228,7 +228,7 @@ class PriorityQueue
      * Peek the bottom value in the priority queue
      * @return \QueueNode node with the min or max value
      */
-    public function peekBottom()
+    public function peekBottom() : QueueNode
     {
         if ($this -> maxQueue) {
             return $this -> queue[$this -> findMin()];
@@ -241,7 +241,7 @@ class PriorityQueue
      *
      * @return \QueueNode maximum value after deleted
      */
-    private function deleteMax()
+    private function deleteMax()  : ?QueueNode
     {
         try {
             $max = $this -> findMax();
@@ -252,7 +252,7 @@ class PriorityQueue
             return $item;
         } catch (Exception $exception) {
             echo "Error";
-            return;
+            return null;
         }
     }
       
@@ -261,7 +261,7 @@ class PriorityQueue
      *
      * @return \QueueNode minimum value after deleted
      */
-    private function deleteMin()
+    private function deleteMin() : ?QueueNode
     {
         try {
             $min = $this -> findMin();
@@ -273,7 +273,7 @@ class PriorityQueue
             echo "Exception at: ";
             echo $exception;
             echo "\n";
-            return;
+            return null;
         }
     }
 
@@ -284,7 +284,7 @@ class PriorityQueue
      *
      * @return \QueueNode deleted value
      */
-    public function delete()
+    public function delete() : QueueNode
     {
         if ($this -> maxQueue) {
             return $this -> deleteMax();
@@ -297,7 +297,7 @@ class PriorityQueue
      * Returns the size of the priority queue
      * @return int size of the queue
      */
-    public function size()
+    public function size() : int
     {
         return sizeof($this -> queue);
     }
@@ -306,7 +306,7 @@ class PriorityQueue
      * Returns whether the queue is empty or not
      * @return bool empty or not
      */
-    public function isEmpty()
+    public function isEmpty() : bool
     {
         return $this -> size() == 0;
     }
@@ -315,7 +315,7 @@ class PriorityQueue
      * Finds the maximum value and returns the maximum priority value
      * @return int $max maximum priority value
      */
-    public function findMax()
+    public function findMax() : int
     {
         $max = 0;
         for ($i = 0; $i < sizeof($this -> queue); $i++) {
@@ -330,7 +330,7 @@ class PriorityQueue
      * Finds the minimum value and returns the minimum priority value
      * @return int $min minimum priority value
      */
-    public function findMin()
+    public function findMin() : int
     {
         $min = 0;
         for ($i = 0; $i < sizeof($this -> queue); $i++) {
@@ -348,14 +348,14 @@ class PriorityQueue
      *
      * Resets Top, Bottom, and Index
      */
-    public function resetCount()
+    public function resetCount() : void
     {
-      $this -> bottom = 0;
-      $this -> index = 0;
-      for($i = $this -> size() - 1; $i >= 0; $i--){
-        $prevValue = $this -> queue[$i] -> getValue();
-        $this -> queue[$i] = new QueueNode($this -> index++, $prevValue);
-      }
-      $this -> top = $this -> index;
+        $this -> bottom = 0;
+        $this -> index = 0;
+        for ($i = $this -> size() - 1; $i >= 0; $i--) {
+            $prevValue = $this -> queue[$i] -> getValue();
+            $this -> queue[$i] = new QueueNode($this -> index++, $prevValue);
+        }
+        $this -> top = $this -> index;
     }
 }
