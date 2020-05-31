@@ -23,6 +23,7 @@
     - Python
 - BinarySearchTree
     - Java
+    - PHP
 - LinkedList
     - GoLang
     - Java
@@ -32,6 +33,7 @@
 - PriorityQueue
     - PHP
     - Python
+    - TypeScript
 - Queue
     - GoLang
     - Java
