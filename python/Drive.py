@@ -1,4 +1,5 @@
 from structs.LinkedList import *
+from structs.PriorityQueue import *
 def main():
   l = LinkedList()
   l.add("Hello")
@@ -50,4 +51,14 @@ def testRemoval():
   print("Clear successful" if d.isEmpty() else "Clear failed")
 
 
-testRemoval()
+# testRemoval()
+
+def testPriorityQueue():
+  q = PriorityQueue()
+  q.insert(QueueNode("hello", 1))
+  q.insert(QueueNode("Edward", 5))
+  q.insert(QueueNode("world", 2))
+  q.insert(QueueNode("John", 10))
+  q.printQueue()
+
+testPriorityQueue()
