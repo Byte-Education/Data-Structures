@@ -115,9 +115,6 @@ class PriorityQueue
 
     /** @var int $bottom the bottom value to be placed at bottom */
     private $bottom;
-    
-    /** @var bool $maxQueue a boolean value checking if the priority is a max priority queue or min queue */
-    private $maxQueue;
 
     /** @var int $top the top value to emphasize top value */
     private $top;
@@ -130,12 +127,11 @@ class PriorityQueue
      *
      * @param bool $maxQueue optional value whether a priority queue is a max queue or not
      */
-    public function __construct(bool $maxQueue = true)
+    public function __construct()
     {
         $this -> queue = [];
         $this -> valuesUsed = [];
         $this -> index = 0;
-        $this -> maxQueue = $maxQueue;
         $this -> top = 0;
         $this -> bottom = 0;
     }
@@ -155,11 +151,7 @@ class PriorityQueue
      */
     private function sort() : void
     {
-        if ($this -> maxQueue) {
-            rsort($this -> queue);
-        } else {
-            sort($this -> queue);
-        }
+        rsort($this -> queue);
     }
 
     /**
@@ -211,17 +203,13 @@ class PriorityQueue
         $this -> insert($value, --$this -> bottom);
     }
     /**
-     * Get the most max or min value in the queue, based off of whether it is a max or min priority queue.
+     * Get the most max value in the queue
      *
      * @return \QueueNode node with the max or min value
      */
     public function peekTop() : QueueNode
     {
-        if ($this -> maxQueue) {
-            return $this -> queue[$this -> findMax()];
-        } else {
-            return $this -> queue[$this -> findMin()];
-        }
+        return $this -> queue[$this -> findMax()];
     }
 
     /**
@@ -230,18 +218,18 @@ class PriorityQueue
      */
     public function peekBottom() : QueueNode
     {
-        if ($this -> maxQueue) {
-            return $this -> queue[$this -> findMin()];
-        }
-        return $this -> queue[$this -> findMax()];
+        return $this -> queue[$this -> findMin()];
     }
     
+    
     /**
-     * Helper function to delete the maximum value
+     * Main delete function
      *
-     * @return \QueueNode maximum value after deleted
+     * Delete value based on whether it is a max queue or min queue
+     *
+     * @return \QueueNode deleted value
      */
-    private function deleteMax()  : ?QueueNode
+    public function delete() : QueueNode
     {
         try {
             $max = $this -> findMax();
@@ -253,43 +241,6 @@ class PriorityQueue
         } catch (Exception $exception) {
             echo "Error";
             return null;
-        }
-    }
-      
-    /**
-     * Helper function to delete the minimum value
-     *
-     * @return \QueueNode minimum value after deleted
-     */
-    private function deleteMin() : ?QueueNode
-    {
-        try {
-            $min = $this -> findMin();
-            $item = $this -> queue[$min];
-            unset($this -> queue[$min]);
-            $this -> queue = array_values($this -> queue);
-            return $item;
-        } catch (Exception $exception) {
-            echo "Exception at: ";
-            echo $exception;
-            echo "\n";
-            return null;
-        }
-    }
-
-    /**
-     * Main delete function
-     *
-     * Delete value based on whether it is a max queue or min queue
-     *
-     * @return \QueueNode deleted value
-     */
-    public function delete() : QueueNode
-    {
-        if ($this -> maxQueue) {
-            return $this -> deleteMax();
-        } else {
-            return $this -> deleteMin();
         }
     }
 
