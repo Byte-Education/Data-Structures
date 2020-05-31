@@ -13,12 +13,13 @@ class QueueNode:
         return self.priority == o.priority
 
     def __str__(self):
-        return str(self.value)
+        return f"Priority: {self.priority}, Value: {self.value}"
 
     def __repr__(self):
-        return str(self.value)
+        return __str__()
 
 
+# Pulled from : https://www.geeksforgeeks.org/priority-queue-in-python/
 class PriorityQueue:
     def __init__(self):
         self.queue = []
@@ -43,10 +44,9 @@ class PriorityQueue:
             del self.queue[max]
             return item
         except IndexError:
-            print()
-            exit()
+            print("Index Error")
+            return
 
     def printQueue(self):
-        for i in range(len(self.queue)):
-            print(self.queue[i])
-
+        for val in self.queue:
+          print(val)
