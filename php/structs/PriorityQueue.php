@@ -135,6 +135,15 @@ class PriorityQueue
     }
 
     /**
+     * Return the string representation of the priority queue
+     */
+    public function __toString(){
+      $str = "Priority Queue Data:\n";
+      $str .= join("\n", $this -> queue);
+      return $str;
+    }
+
+    /**
      * Sort the data based on the priorities
      */
     private function sort()
@@ -259,17 +268,6 @@ class PriorityQueue
             return $this -> deleteMax();
         } else {
             return $this -> deleteMin();
-        }
-    }
-
-    /**
-     * Print the data in the queue
-     */
-    public function printData()
-    {
-        for ($i = 0; $i < sizeof($this -> queue); $i++) {
-            echo $this -> queue[$i];
-            echo "\n";
         }
     }
 

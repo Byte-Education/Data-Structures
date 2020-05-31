@@ -73,10 +73,8 @@ class TestPriorityQueue{
 
     $p_queue -> insert("top", 50);
     
-    
-    echo "Data:\n";
-    $p_queue -> printData();
-    echo "\n";
+    echo $p_queue . "\n\n";
+
     echo "Deleted: \n";
     echo $p_queue -> delete(true);
     echo "\n\n";
@@ -87,8 +85,7 @@ class TestPriorityQueue{
 
     $p_queue -> insert("Hello again");
     
-    echo "Data:\n";
-    $p_queue -> printData();
+    echo $p_queue;
   }
 
 }
