@@ -5,14 +5,14 @@ package structs;
  * 
  * Changed from MinHeap to Heap
  */
-public class Heap {
+public class MinHeap {
   private int[] data;
   private int size;
   private int maxsize;
 
   private static final int FRONT = 1;
 
-  public Heap(int maxsize) {
+  public MinHeap(int maxsize) {
     this.maxsize = maxsize;
     this.size = 0;
     data = new int[this.maxsize + 1];
@@ -123,7 +123,7 @@ public class Heap {
   public static void main(String[] arg) 
   { 
       System.out.println("The Min Heap is "); 
-      Heap minHeap = new Heap(15); 
+      MinHeap minHeap = new MinHeap(15); 
       minHeap.insert(5); 
       minHeap.insert(3); 
       minHeap.insert(17); 
