@@ -195,6 +195,7 @@ class PriorityQueue
 
     /**
      * Insert at the bottom of the priority queue
+     *
      * @param $value value to be added at bottom
      */
     public function insertAtBottom($value) : void
@@ -214,6 +215,7 @@ class PriorityQueue
 
     /**
      * Peek the bottom value in the priority queue
+     *
      * @return \QueueNode node with the min or max value
      */
     public function peekBottom() : QueueNode
@@ -246,6 +248,7 @@ class PriorityQueue
 
     /**
      * Returns the size of the priority queue
+     *
      * @return int size of the queue
      */
     public function size() : int
@@ -255,6 +258,7 @@ class PriorityQueue
 
     /**
      * Returns whether the queue is empty or not
+     *
      * @return bool empty or not
      */
     public function isEmpty() : bool
@@ -264,6 +268,7 @@ class PriorityQueue
 
     /**
      * Finds the maximum value and returns the maximum priority value
+     *
      * @return int $max maximum priority value
      */
     public function findMax() : int
@@ -279,6 +284,7 @@ class PriorityQueue
 
     /**
      * Finds the minimum value and returns the minimum priority value
+     *
      * @return int $min minimum priority value
      */
     public function findMin() : int
