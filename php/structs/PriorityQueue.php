@@ -181,15 +181,10 @@ class PriorityQueue
      */
     public function insertAtTop($value) : void
     {
-        // Set the top index to the top priority found
         $this -> top = $this -> peekTop() -> getPriority();
-        // Keep track of previous top priority
         $previousTop = $this -> top;
-        // Update and shift top priority index by a factor determined by constant TOP_STEP
         $this -> top += self::TOP_STEP;
-        // Insert at new top priority
         $this -> insert($value, $this -> top);
-        // Update current index priority to previous top priority + 1
         $this -> index = $previousTop + 1;
     }
 
@@ -233,6 +228,10 @@ class PriorityQueue
      */
     public function delete() : QueueNode
     {
+        if ($this -> isEmpty()) {
+            echo "Empty queue, nothing to delete\n";
+            return null;
+        }
         try {
             $max = $this -> findMax();
             $item = $this -> queue[$max];
