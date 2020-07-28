@@ -1,5 +1,9 @@
 # Data Structures
 
+## Description
+
+A Repository of various Data Structures written in various programming languages
+
 ## Languages
 
 - C

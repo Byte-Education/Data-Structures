@@ -4,6 +4,8 @@ include "structs/ArrayList.php";
 include "structs/LinkedList.php";
 include "structs/Queue.php";
 include "structs/PriorityQueue.php";
+include "algorithms/Search.php";
+include "algorithms/Factorial.php";
 
 class TestLinkedList
 {
@@ -112,3 +114,22 @@ class TestPriorityQueue
 }
 
 TestPriorityQueue::main();
+
+
+class TestAlgorithms{
+  public static function jumpSearchTest($collection){
+    echo Search::jumpSearch($collection, 2);
+  }
+
+  public static function factorialTest(){
+    echo "Recursive: 10! = " . Factorial::recursive(10) . "\n";
+    echo "Iterative: 10! = " . Factorial::iterative(10) . "\n";
+  }
+
+  public static function main(){
+    $collection = array(1,1,2,3,5,8,13,21,34);
+    jumpSearchTest($collection);
+  }
+}
+
+// TestAlgorithms::main();

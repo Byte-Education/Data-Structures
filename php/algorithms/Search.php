@@ -33,7 +33,7 @@ class Search
     }
 
     /**
-     * Sequential search function
+     * Linear search function
      *
      * Run time: o(n)
      *
@@ -42,12 +42,44 @@ class Search
      *
      * @return int index of value if found, -1 if not
      */
-    public static function sequentialSearch($collection, $value)
+    public static function linearSearch($collection, $value)
     {
         for ($i = 0; $i < sizeof($collection); $i++) {
             if ($collection[$i] == $value) {
                 return $i;
             }
+        }
+        return -1;
+    }
+
+    /**
+     * Jump search algorithm
+     *
+     * Jump up to a point then run a linear search
+     *
+     * @param $collection a collection of sorted values
+     * @param $value a specific value being searched for
+     */
+    public static function jumpSearch($collection, $value)
+    {
+        $limit = sizeof($collection);
+        $step = (int)(floor(sqrt($limit)));
+        $prev = 0;
+        while ($collection[min($step, $limit) - 1] < $value) {
+            $prev = $step;
+            $step += (int)(floor(sqrt($limit)));
+            if ($prev >= $value) {
+                return -1;
+            }
+        }
+        while ($collection[$prev] < $value) {
+            $prev++;
+            if ($prev == min($step, $value)) {
+                return -1;
+            }
+        }
+        if ($collection[$prev] == $value) {
+            return $prev;
         }
         return -1;
     }
