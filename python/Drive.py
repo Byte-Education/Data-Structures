@@ -1,7 +1,33 @@
 from structs.LinkedList import *
 from structs.PriorityQueue import *
 from structs.BST import *
+from structs.Set import *
 from util.test import test_equals, test_true, disable_print, test_false, test_no_raise, test_raise
+
+@test_equals(2)
+def testSetAdd():
+  s = Set()
+  s.add(1)
+  s.add(2)
+  return len(s)
+
+@test_equals(2)
+def testSetNoRepeats():
+  s = Set()
+  s.add(1)
+  s.add(2)
+  s.add(2)
+  s.add(2)
+  return len(s)
+
+@test_raise(IndexError)
+def testSetDeleteInvalidIndex():
+  s = Set()
+  s.remove(1)
+@test_raise(IndexError)
+def testSetGetInvalidIndex():
+  s = Set()
+  s.get(1)
 
 @test_equals(4)
 def testLinkedListAdd():
@@ -34,14 +60,14 @@ def testLinkedListGet():
   return l.get(0)
 
 @test_true()
-def testClearWithHead():
+def testLinkedListClearWithHead():
   a = LinkedList()
   a.add("hello")
   a.remove(0)
   return a.isEmpty()
 
 @test_equals(1)
-def testRemovalOfHeadWithOthers():
+def testLinkedListRemovalOfHeadWithOthers():
   b = LinkedList()
   b.add("Hello")
   b.add("World")
@@ -49,7 +75,7 @@ def testRemovalOfHeadWithOthers():
   return len(b)
 
 @test_equals(3)
-def testRemovalOfMiddle():
+def testLinkedListRemovalOfMiddle():
   c = LinkedList()
   c.add("Hello")
   c.add("Bye")
@@ -60,7 +86,7 @@ def testRemovalOfMiddle():
 
 
 @test_equals(2)
-def testRemovalOfLast():
+def testLinkedListRemovalOfLast():
   d = LinkedList()
   d.add("Hello")
   d.add("Bye")
@@ -69,7 +95,7 @@ def testRemovalOfLast():
   return len(d)
 
 @test_true()
-def testClear():
+def testLinkedListClear():
   e = LinkedList()
   e.add("Hello")
   e.add("World")
@@ -87,6 +113,23 @@ def testPriorityQueueAdd():
   q.insert("world", 2)
   q.insert("John", 10)
   return len(q)
+
+@test_equals(3)
+def testPriorityQueuePop():
+  q = PriorityQueue()
+  q.insert("hello", 1)
+  q.insert("Edward", 5)
+  q.insert("world", 2)
+  q.insert("John", 10)
+  q.delete()
+  return len(q)
+
+@test_no_raise()
+def testPriorityQueueDeleteNoError():
+  q = PriorityQueue()
+  with disable_print():
+    q.delete()
+  
 
 
 @test_equals(8)
@@ -151,6 +194,19 @@ def testBSTMultiType():
   b.insert('a')
 
 
+def testSet():
+  testSetAdd()
+  print()
+  testSetNoRepeats()
+  print()
+  testSetDeleteInvalidIndex()
+  print()
+  testSetGetInvalidIndex()
+  print()
+
+
+testSet()
+
 def testBST():
   testBSTAdd()
   print()
@@ -165,4 +221,32 @@ def testBST():
   testBSTMultiType()
   print()
 
-testBST()
+
+def testLinkedList():
+  testLinkedListAdd()
+  print()
+  testLinkedListContains()
+  print()
+  testLinkedListGet()
+  print()
+  testLinkedListNotContains()
+  print()
+  testLinkedListClearWithHead()
+  print()
+  testLinkedListRemovalOfHeadWithOthers()
+  print()
+  testLinkedListRemovalOfLast()
+  print()
+  testLinkedListRemovalOfMiddle()
+  print()
+  testLinkedListClear()
+  print()
+
+
+def testPriorityQueue():
+  testPriorityQueueAdd()
+  print()
+  testPriorityQueuePop()
+  print()
+  testPriorityQueueDeleteNoError()
+  print()
