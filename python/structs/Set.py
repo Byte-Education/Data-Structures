@@ -12,7 +12,7 @@ class Set:
     def add(self, e):
         if(contains(e)):
             return False
-        self.list[self.size] = e
+        self.list.append(e)
         size += 1
 
     def remove(self, index):

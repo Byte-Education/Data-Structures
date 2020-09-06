@@ -141,9 +141,9 @@ public class Driver {
   }
 
   public static void main(String[] args) {
-    // testLinkedList();
+    testLinkedList();
     // testArrayList();
     // testQueue();
-    testAlgorithms();
+    // testAlgorithms();
   }
 }

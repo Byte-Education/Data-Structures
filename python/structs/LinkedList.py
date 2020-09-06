@@ -53,7 +53,7 @@ class LinkedList:
       if(self.head == element):
         return True
       temp = self.head
-      while(temp.getNext() != None):
+      while(temp != None):
         if(temp.getData() == element):
           return True
         temp = temp.getNext()
@@ -68,7 +68,7 @@ class LinkedList:
       return count
 
     def get(self, index):
-      if(index > self.size() or index < 0 or self.isEmpty()):
+      if(index >= self.size() or index < 0 or self.isEmpty()):
         raise IndexError
       if(index == 0):
         return self.head.getData()
@@ -81,7 +81,7 @@ class LinkedList:
         return temp.getData()
     
     def remove(self, index):
-      if(index > self.size() or index < 0 or self.isEmpty()):
+      if(index >= self.size() or index < 0 or self.isEmpty()):
         raise IndexError
       if(index == 0):
         if(self.head.getNext() == None):
@@ -96,7 +96,7 @@ class LinkedList:
       else:
         count = 0
         temp = self.head
-        while(count + 1 != index and temp.getNext().getNext() != None):
+        while(count + 1 != index and temp.getNext() != None):
           temp = temp.getNext()
           count += 1
         next = temp.getNext()
@@ -107,6 +107,8 @@ class LinkedList:
     def clear(self):
       while(not self.isEmpty()):
         self.remove(self.size() - 1)
-          
+    
+    def __len__(self):
+      return self.size()
 
 

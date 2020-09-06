@@ -1,46 +1,46 @@
-class LinkedNode {
-  private next: LinkedNode;
-  private data: any;
+class LinkedNode<T> {
+  private next: LinkedNode<T>;
+  private data: T;
 
-  constructor(data: any){
+  constructor(data: T){
     this.data = data;
     this.next = null;
   }
 
-  public getData(): any {
+  public getData(): T {
     return this.data;
   }
 
-  public setData(data: any): void {
+  public setData(data: T): void {
     this.data = data;
   }
 
-  public getNext(): LinkedNode {
+  public getNext(): LinkedNode<T> {
     return this.next;
   }
 
-  public setNext(next: LinkedNode): void {
+  public setNext(next: LinkedNode<T>): void {
     this.next = next;
   }
 
 }
 
-export class LinkedList {
-  private head: LinkedNode;
+export class LinkedList<T> {
+  private head: LinkedNode<T>;
 
   constructor(){
     this.head = null;
   }
 
-  public add(data: any): void {
+  public add(data: T): void {
     if(this.head == null){
-      this.head = new LinkedNode(data);
+      this.head = new LinkedNode<T>(data);
     } else {
       var temp = this.head;
       while(temp.getNext() != null){
         temp = temp.getNext();
       }
-      temp.setNext(new LinkedNode(data));
+      temp.setNext(new LinkedNode<T>(data));
     }
   }
 
@@ -77,7 +77,7 @@ export class LinkedList {
     return -1;
   }
 
-  public contains(data: any): boolean {
+  public contains(data: T): boolean {
     if(this.isEmpty()){
       return false;
     }

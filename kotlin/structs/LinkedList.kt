@@ -4,5 +4,7 @@ class Node {
 }
 
 class LinkedList {
-  
+  private head Node;
+
+
 }

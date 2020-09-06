@@ -30,7 +30,8 @@ class PriorityQueue:
     def isEmpty(self):
         return len(self.queue) == 0
 
-    def insert(self, data=QueueNode):
+    def insert(self, key, value):
+        data = QueueNode(key, value)
         self.queue.append(data)
         self.queue.sort(reverse=True)
 
@@ -47,6 +48,7 @@ class PriorityQueue:
             print("Index Error")
             return
 
-    def printQueue(self):
-        for val in self.queue:
-          print(val)
+
+    def __len__(self):
+        return len(self.queue)
+
